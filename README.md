@@ -1,6 +1,6 @@
 # HybridRepair
 
-This is the original PyTorch implementation of the work: HybridRepair
+This is an implementation of our paper "HybridRepair: Towards Annotation-Efficient Repair for Deep Learning Models", which will be presented in ISSTA'22.
 
 ## Abstract
 
