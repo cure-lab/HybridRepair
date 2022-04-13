@@ -2,6 +2,16 @@
 
 This is an implementation of our paper "HybridRepair: Towards Annotation-Efficient Repair for Deep Learning Models", which will be presented in ISSTA'22.
 
+If you find this repository useful for your work, please consider citing it as follows:
+```
+@article{yu2021testrank,
+  title={HybridRepair: Towards Annotation-Efficient Repair for Deep Learning Models},
+  author={Yu Li, Muxi Chen, and Qiang Xu},
+  journal={ISSTA},
+  year={2022}
+}
+```
+
 ## Abstract
 
 A well-trained deep learning (DL) model often cannot achieve expected performance after deployment due to the mismatch between the distributions of the training data and the field data in the operational environment. Therefore, repairing DL models is critical, especially when deployed on increasingly larger tasks with shifted distributions. 
