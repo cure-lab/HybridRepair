@@ -62,3 +62,8 @@ sh repair.sh
 ```
 sh baseline.sh
 ```
+
+## Contact
+If there are any questions, feel free to send a message to yuli@cse.cuhk.edu.hk or mxchen21@cse.cuhk.edu.hk
+
+
