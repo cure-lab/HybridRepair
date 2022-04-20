@@ -4,7 +4,7 @@ This is an implementation of our paper "HybridRepair: Towards Annotation-Efficie
 
 If you find this repository useful for your work, please consider citing it as follows:
 ```
-@article{yu2021testrank,
+@article{yu2022hybridrepair,
   title={HybridRepair: Towards Annotation-Efficient Repair for Deep Learning Models},
   author={Yu Li, Muxi Chen, and Qiang Xu},
   journal={ISSTA},
