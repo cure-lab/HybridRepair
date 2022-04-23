@@ -90,7 +90,7 @@ parser.add_argument("--step",
 
 # test config
 parser.add_argument("--solution",
-                    # choices=['random', 'ours', 'mcp', 'gini', 'dsa', 'coreset', 'failure-coverage'],
+                    # choices=['random', 'ours', 'mcp', 'gini', 'coreset', 'failure-coverage'],
                     default='random',
                     help='using gini technique to select test cases')
 
@@ -192,8 +192,9 @@ if torch.cuda.is_available():
     torch.cuda.manual_seed(args.manualSeed)
     torch.cuda.manual_seed_all(args.manualSeed)
     # True ensures the algorithm selected by CUFA is deterministic
-    # torch.backends.cudnn.deterministic = True
-    torch.set_deterministic(True)
+    # Try one of them
+    torch.backends.cudnn.deterministic = True # torch.set_deterministic(True)
+    
     # False ensures CUDA select the same algorithm each time the application is run
     torch.backends.cudnn.benchmark = False
 
@@ -995,8 +996,6 @@ def main():
                 print_log('ssl consistency: selected unlabeled data {}, labeled data {}'.format(
                     len(unlabeled_train_set) if unlabeled_train_set is not None else 0, len(sel_idxes)), log)
 
-            elif solution == 'dsa':
-                sel_idxes = dsa_selection(model2test, model2test_trainset, test_set, num_classes, args)
             elif solution == 'coreset':
                 sel_idxes = coreset_selection(test_latents, budget)
             elif solution == 'badge':
@@ -1715,77 +1714,6 @@ class AugMixDataset(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.dataset)
-
-
-
-def dsa_selection(model2test, model2test_trainset, testset, num_classes, args):
-    from keras import backend as K
-    from pytorch2keras import pytorch_to_keras
-    import baseline.dsa as dsa
-    from torch.autograd import Variable
-    
-    os.environ['KERAS_BACKEND'] = 'tensorflow'
-    K.set_image_data_format('channels_first')
-    print_log('{} {}'.format(K.image_data_format(), K.backend()), args.log)
-    # implementation of surprise adaquacy as selection method
-    print_log("Select test case with surprise adaquacy", args.log)
-
-    # preprare keras model, dataset, for dsa calculation
-    # dummy variable
-    channel = default_hyperparams[args.dataset]['channel']
-    image_size = default_hyperparams[args.dataset]['img_size']
-    print (channel, image_size)
-    input_np = np.random.uniform(0,1, (1, channel, image_size, image_size))
-    input_var = Variable(torch.FloatTensor(input_np))
-    pytorch_output = model2test(input_var.to(device))[0].cpu().detach().numpy()
-    k_model = pytorch_to_keras(model2test, input_var.to(device), [(channel, image_size, image_size,)],
-                                verbose=True,
-                                name_policy='short')
-    print_log(k_model.summary(), args.log)
-    keras_output = k_model.predict(input_np)[0]
-    # print (keras_output.shape, pytorch_output.shape)
-    error = np.max(pytorch_output - keras_output)
-    print_log('{} {} {}'.format(pytorch_output, '\n', keras_output), args.log)
-    print ("error, ", error)
-
-    # check again: to be deleted
-    input_np = np.random.uniform(0, 1, (1, channel, image_size, image_size))
-    input_var = Variable(torch.FloatTensor(input_np))
-    p_output = model2test(input_var.to(device))[0].cpu().detach().numpy()
-    k_output = k_model.predict(input_np)[0]
-    print (p_output, k_output)
-    print (np.sum(p_output - k_output))
-
-    # sda ranking
-    def dataset_convertion(input_data):
-        output_data = [input_data[i][0].numpy() for i in range(len(input_data))]
-        output_label = [input_data[i][1] for i in range(len(input_data))]
-        # print (output_data)
-        output_data = np.array(output_data)
-        output_label = np.array(output_label)
-        return output_data, output_label
-        
-    keras_model_train_data = dataset_convertion(model2test_trainset)[0]
-    keras_test_data = dataset_convertion(testset)[0]
-    args.num_classes = num_classes
-
-    if args.model2test_arch == 'resnet18':
-        layer_names = ['189']
-    else:
-        layer_names = ['output_1']
-    
-    dsa_values = dsa.fetch_dsa(model=k_model, 
-                            x_train=keras_model_train_data, 
-                            x_target=keras_test_data, 
-                            target_name='', layer_names=layer_names, args=args)
-
-    # higher dsa values in the front
-    ranked_indexes = np.argsort(dsa_values)[::-1]
-    lb_idxes = ranked_indexes[:args.budget]
-    print ("dsa values: ", dsa_values[ranked_indexes[0]], dsa_values[ranked_indexes[1]], dsa_values[ranked_indexes[2]])
-    
-    return lb_idxes
-    
 
 def plot_2d_scatter(codes_embedded, labels, save_path, fig_name, cmap=plt.get_cmap("seismic")):
     # visulize with tSNE

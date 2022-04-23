@@ -24,13 +24,9 @@ Experimental results show that HybridRepair outperforms both state-of-the-art DL
 
 Install the environment by:
 ```
-conda env create -f environment.yml
-```
-### Simple Example
-
-To check the general functionality, you need to input your DATA_ROOT in baseline.sh first. Then run the following command:
-```
-sh baseline.sh
+conda create -n hybridrepair python=3.6.8
+conda activate hybridrepair
+pip install -r requirements.txt
 ```
 
 ## Detailed Description
@@ -45,22 +41,33 @@ You need to input your DATA_ROOT in all the sh files first. (Notice: If your cif
 
 We provide three trained **MobileNet** models on **cifar10** in 'check_point\cifar10\ckpt_bias', and a pretrained feature extraction model in 'check_point\cifar10\ckpt_pretrained_mocov3'. 
 
-**If you want to validate on other dataset and model**, please run the following command. The variables 'DATASET' and 'MODEL' in train.sh should be changed correspondingly. 
+### Simple Example
+
+To check the general functionality, you can run the following command:
 ```
-sh train.sh
+sh baseline.sh
 ```
+It will run baseline method 'MCP' for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 min. The expected output is "T2 Acc before/after repair: 80.38/80.8".
+
 ### To validate the paper’s claims and results: 
 
 **Run HybridRepair on cifar10 dataset and MobileNet**
-- For other dataset and model, please change the variables 'DATASET' and 'MODEL' correspondingly. 
 ```
 sh repair.sh
 ```
-**Run a baseline method(MCP) on cifar10 dataset and MobileNet**
-- For other baseline methods, please change the variable 'SOLUTION' correspondingly, i.e, 'gini' 'coreset' 'badge' 'SSLConsistency' 'SSLConsistency-Imp' 'SSLRandom'. 
+- It will run HybridRepair for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 hour. The expected output is "T2 Acc before/after repair: 80.38/_".
 - For other dataset and model, please change the variables 'DATASET' and 'MODEL' correspondingly. 
+
+**Run a baseline method(MCP) on cifar10 dataset and MobileNet**
 ```
 sh baseline.sh
+```
+- For other baseline methods, please change the variable 'SOLUTION' correspondingly, i.e, 'gini' 'mcp' 'coreset' 'badge' 'SSLConsistency' 'SSLConsistency-Imp' 'SSLRandom'. 
+- For other dataset and model, please change the variables 'DATASET' and 'MODEL' correspondingly. 
+
+**Before validation on other dataset and model**, please run the following command to generate models first. The variables 'DATASET' and 'MODEL' in train.sh should be changed correspondingly. 
+```
+sh train.sh
 ```
 
 ## Contact

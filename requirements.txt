@@ -1,0 +1,10 @@
+numpy==1.19.5
+scikit_learn
+tensorboard
+cython
+hdbscan==0.8.27
+matplotlib
+tqdm
+torch
+torchvision
+torchaudio
