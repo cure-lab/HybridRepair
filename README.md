@@ -1,6 +1,16 @@
 # HybridRepair
 
-This is the original PyTorch implementation of the work: HybridRepair
+This is an implementation of our paper "HybridRepair: Towards Annotation-Efficient Repair for Deep Learning Models", which will be presented in ISSTA'22.
+
+If you find this repository useful for your work, please consider citing it as follows:
+```
+@article{yu2022hybridrepair,
+  title={HybridRepair: Towards Annotation-Efficient Repair for Deep Learning Models},
+  author={Yu Li, Muxi Chen, and Qiang Xu},
+  journal={ISSTA},
+  year={2022}
+}
+```
 
 ## Abstract
 
@@ -52,3 +62,8 @@ sh repair.sh
 ```
 sh baseline.sh
 ```
+
+## Contact
+If there are any questions, feel free to send a message to yuli@cse.cuhk.edu.hk or mxchen21@cse.cuhk.edu.hk
+
+
