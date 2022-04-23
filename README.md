@@ -55,7 +55,7 @@ It will run baseline method 'MCP' for MobileNet on cifar10 (budget=1%, Model A).
 ```
 sh repair.sh
 ```
-- It will run HybridRepair for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 hour. The expected output is "T2 Acc before/after repair: 80.38/_".
+- It will run HybridRepair for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 hour. The expected output is "T2 Acc before/after repair: 80.38/83.8".
 - For other dataset and model, please change the variables 'DATASET' and 'MODEL' correspondingly. 
 
 **Run a baseline method(MCP) on cifar10 dataset and MobileNet**
