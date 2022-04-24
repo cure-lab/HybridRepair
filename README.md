@@ -22,7 +22,7 @@ Experimental results show that HybridRepair outperforms both state-of-the-art DL
 ## Getting Started
 ### Requirements
 
-Install the environment by:
+First, please make sure you have installed Conda. Then, our environment can be installed by:
 ```
 conda create -n hybridrepair python=3.6.8
 conda activate hybridrepair
@@ -30,16 +30,16 @@ pip install -r requirements.txt
 ```
 
 ## Detailed Description
-We provide three sh files:
+We provide three bash script files:
 | sh files      |                                                        |
 | ------------- | -------------------------------------------------------| 
 | train.sh      | Train a test model for model repair                    |
-| baseline      | Use baseline model repair techniques to repair models   | 
-| repair        | Use Hybrid Repair to repair models                      |
+| baseline.sh      | Use baseline model repair techniques to repair models   | 
+| repair.sh        | Use Hybrid Repair to repair models                      |
  
-You need to input your DATA_ROOT in all the sh files first. (Notice: If your cifar10 dataset is in "./dataset/cifar10", then you only need to input "./dataset") 
+To run these script files, you need to specify the DATA_ROOT variable in all sh files. (Notice: If your cifar10 dataset is stored in "./dataset/cifar10", then you only need to input "./dataset") 
 
-We provide three trained **MobileNet** models on **cifar10** in 'check_point\cifar10\ckpt_bias', and a pretrained feature extraction model in 'check_point\cifar10\ckpt_pretrained_mocov3'. 
+We provide three trained **MobileNet** models (e.g., the model under repair) on **cifar10** in 'check_point\cifar10\ckpt_bias', and a pretrained feature extraction model in 'check_point\cifar10\ckpt_pretrained_mocov3'. 
 
 ### Simple Example
 
@@ -65,7 +65,7 @@ sh baseline.sh
 - For other baseline methods, please change the variable 'SOLUTION' correspondingly, i.e, 'gini' 'mcp' 'coreset' 'badge' 'SSLConsistency' 'SSLConsistency-Imp' 'SSLRandom'. 
 - For other dataset and model, please change the variables 'DATASET' and 'MODEL' correspondingly. 
 
-**Before validation on other dataset and model**, please run the following command to generate models first. The variables 'DATASET' and 'MODEL' in train.sh should be changed correspondingly. 
+**Before validation on other dataset and model**, please run the following command to generate models under repair first. The variables 'DATASET' and 'MODEL' in train.sh should be changed correspondingly. 
 ```
 sh train.sh
 ```
