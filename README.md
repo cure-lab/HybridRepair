@@ -47,7 +47,7 @@ To check the general functionality, you can run the following command:
 ```
 sh baseline.sh
 ```
-It will run baseline method 'MCP' for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 min. The expected output is "T2 Acc before/after repair: 80.38/80.8".
+It will run baseline method 'MCP' for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 min. The expected output is "T2 Acc before/after repair: 80.38/80.8". You can expect minor rounding errors due to the difference in hardware. 
 
 ### To validate the paper’s claims and results: 
 
