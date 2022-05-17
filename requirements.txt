@@ -1,4 +1,4 @@
-numpy==1.21.1
+numpy
 cython
 hdbscan==0.8.27
 scikit_learn
