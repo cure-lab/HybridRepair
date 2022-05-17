@@ -16,12 +16,17 @@ if [ ! -d "$DIRECTORY" ]; then
 fi
 ############### Configuration   ##############################
 
-DATA_ROOT='YOUR DATASET'
-
+DATA_ROOT='./dataset' #YOUR DATASET ROOT
+if [ ! -d "$DATA_ROOT" ]; then
+    mkdir $DATA_ROOT
+fi
 #  ------Test Center:  Selection ------
 DATASET='cifar10'
 # DATASET='svhn'
 # DATASET='gtsrb'
+if [ ! -d "./$DATA_ROOT/$DATASET" ]; then
+    mkdir ./$DATA_ROOT/$DATASET
+fi
 
 # default parameters
 weight_decay=5e-4

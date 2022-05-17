@@ -17,19 +17,27 @@ fi
 
 ############### Configuration   ##############################
 
-DATA_ROOT='YOUR DATASET'
 epoch=200
 STEP=100
 RANDOM_SEED=10
+
+DATA_ROOT='./dataset' #YOUR DATASET ROOT
+if [ ! -d "$DATA_ROOT" ]; then
+    mkdir $DATA_ROOT
+fi
+DATASET='cifar10'
+# DATASET='svhn'
+# DATASET='gtsrb'
+if [ ! -d "./$DATA_ROOT/$DATASET" ]; then
+    mkdir ./$DATA_ROOT/$DATASET
+fi
+
 
 ############### Train   ##############################
 # ----- IP vendor: Train biased models -----
 echo "train model for IP vendor"
 
 # train models
-DATASET='cifar10'
-# DATASET='svhn'
-# DATASET='gtsrb'
 
 MODEL='MobileNet'
 # MODEL='resnet18'
