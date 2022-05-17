@@ -1,10 +1,8 @@
-numpy==1.21
-scikit_learn
-tensorboard
+numpy==1.21.1
 cython
 hdbscan==0.8.27
+scikit_learn
 matplotlib
 tqdm
 torch
 torchvision
-torchaudio
