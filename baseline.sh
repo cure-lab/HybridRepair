@@ -7,10 +7,13 @@ echo "Current host is: $HOST"
 DATE=`date +%Y-%m-%d`
 echo $DATE
 DIRECTORY=./save/${DATE}/
+if [ ! -d "./save" ]; then
+    mkdir ./save
+fi
+
 if [ ! -d "$DIRECTORY" ]; then
     mkdir ./save/${DATE}/
 fi
-
 ############### Configuration   ##############################
 
 DATA_ROOT='YOUR DATASET'
