@@ -24,7 +24,7 @@ Experimental results show that HybridRepair outperforms both state-of-the-art DL
 
 First, please make sure you have installed Conda. Then, our environment can be installed by:
 ```
-conda create -n hybridrepair python=3.7
+conda create -n hybridrepair python=3.6.9
 conda activate hybridrepair
 pip install -r requirements.txt
 ```
