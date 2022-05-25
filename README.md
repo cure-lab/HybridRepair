@@ -50,7 +50,7 @@ sh baseline.sh
 ```
 It will run baseline method 'MCP' for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 min on 2 TITAN NVIDIA XP GPU. The expected output is "T2 Acc before/after repair: 80.38/80.8". You can expect minor rounding errors due to the difference in hardware. 
 
-### To validate the paper’s claims and results: 
+### To validate the paper’s claims and results
 
 **Run HybridRepair on cifar10 dataset and MobileNet**
 ```
@@ -59,7 +59,7 @@ sh repair.sh
 - It will run HybridRepair for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 hour on 2 TITAN NVIDIA XP GPU. The expected output is "T2 Acc before/after repair: 80.38/83.8".
 - For other dataset and model, please change the variables 'DATASET' and 'MODEL' correspondingly. 
 
-**Run a baseline method(MCP) on cifar10 dataset and MobileNet**
+**Run a baseline method (MCP) on cifar10 dataset and MobileNet**
 ```
 sh baseline.sh
 ```
@@ -70,21 +70,22 @@ sh baseline.sh
 ```
 sh train.sh
 ```
-**Extend HybridRepair to other dataset and model**
+
+### Extend HybridRepair to other dataset and model
 For new dataset:
-1. Implement dataset details in selection.py, including normalization and number of classes.
-2. Load the dataset.
-3. Prepare the following set of data points as torch.utils.data.dataset.Dataset object
+1. Train models with the train_classifier.py. In this file, you will modify the "num of classes", "weight per class", and "load dataset" part accordingly.
+1. After prepare the model, we add the details about the new dataset in selection.py, including transformation, normalization values, number of classes, and how to break the whole dataset into different subsets.
     - mix_test_set: We combine train set and test set of the original division to a large dataset
     - T2_set: The new test set. After retraining, we evalute the retrained model on this set.
     - raw_test_set: The unlabeled dataset. Selection methods selects data points for labeling from this set.
     - selected_set: The set of data selected by selection methods from raw_test_set.
     - model2test_trainset: The set of initial trained data. Model will be retrained on model2test_trainset and selected_set.
-4. If you have a pretrained feature extractor(unsupervised is recommended), you need to implement the code for feature extraction. Otherwise, you can set fe='model2test' in repair.sh.
+4. Please prepare the MoCov3 model beforehand with the opensource code by MoCoV3. After that, supply the MoCov3 model path.
 
 For new model structure:
-1. Implemet new model in ./mymodels
+1. Implemet new model architecure definition in ./mymodels
 2. Add a reference in ./mymodels/init.py
+3. Train and test the new model.
 
 ## Contact
 If there are any questions, feel free to send a message to yuli@cse.cuhk.edu.hk or mxchen21@cse.cuhk.edu.hk
