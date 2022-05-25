@@ -84,7 +84,7 @@ For new dataset:
 
 For new model structure:
 1. Implemet new model in ./mymodels
-2. Add a reference in ./mymodels/__init__.py
+2. Add a reference in ./mymodels/init.py
 
 ## Contact
 If there are any questions, feel free to send a message to yuli@cse.cuhk.edu.hk or mxchen21@cse.cuhk.edu.hk
