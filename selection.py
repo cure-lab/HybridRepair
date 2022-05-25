@@ -176,7 +176,6 @@ parser.add_argument("--tcp",
 
 # random seed
 parser.add_argument('--manualSeed', type=int, default=None, help='manual seed')
-##########################################################################
 
 
 args = parser.parse_args()
@@ -220,9 +219,6 @@ dataset_split = {
 
 retrain_epoch = args.retrain_epoch 
 
-
-
-###############################################################################
 ###############################################################################
 def main():
     global retrain_epoch
@@ -260,7 +256,8 @@ def main():
     
     print_log(args, log)
 
-    # Init dataset
+    #####################################################
+    # ---- Prepare data and data loader, data will be downloaded automatically to the dataset directory------
     if not os.path.isdir(args.data_path):
         os.makedirs(args.data_path)
 
@@ -415,6 +412,13 @@ def main():
     #####################################################
     # ---- Test Center: Prepare Test Dataset------
     #  get testset and testloader 
+    """
+    mix_test_set:
+    T2_set:
+    raw_mix_test_set:
+    raw_t2_set:
+    raw_test_set:
+    """
     train_idx = np.array(train_idx)
     val_idx = np.array(val_idx)
     if args.dataset == 'cifar10':
@@ -803,6 +807,10 @@ def main():
                 sel_idxes = gini_selection(logits, budget)
             elif solution == 'TTA':
                 # calculate the tta value on test set
+                """
+                
+                
+                """
                 if iter_idx == 0:
                     tta_values, _, tta_mean_entropy = get_tta_values(model2test, raw_test_set, test_transform, n_iters=n_iters)
                 else:

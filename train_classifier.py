@@ -156,7 +156,9 @@ def main():
                         'log_train_classifier_seed_{}.txt'.format(args.manualSeed)), 'w')
                         
     data_dir = os.path.join(args.data_root, args.dataset)
-
+    """
+    Prepare data and data loader, data will be downloaded automatically to the dataset directory
+    """
     # num of classes
     num_class_config = {'stl10':10, 'cifar10':10, 'cifar100':100, 'gtsrb':43, 'tinyimagenet':200, 'svhn':10, 'emnist':47}
     num_classes = num_class_config[args.dataset]
