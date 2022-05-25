@@ -413,11 +413,9 @@ def main():
     # ---- Test Center: Prepare Test Dataset------
     #  get testset and testloader 
     """
-    mix_test_set:
-    T2_set:
-    raw_mix_test_set:
-    raw_t2_set:
-    raw_test_set:
+    mix_test_set: We combine train set and test set of the original division to a large dataset
+    T2_set: This is the new test set. After retraining, we evalute the retrained model on this set.
+    raw_test_set: This is the unlabeled dataset. Selection methods selects data points for labeling from this set.
     """
     train_idx = np.array(train_idx)
     val_idx = np.array(val_idx)
