@@ -28,6 +28,7 @@ conda create -n hybridrepair python=3.6.9
 conda activate hybridrepair
 pip install -r requirements.txt
 ```
+To speed up, we think at least one GPU is required. Using purely CPU would be very slow. We use TITAN NVIDIA XP for experiments, and Cuda=11.5, PyTorch 1.10.2, torchvision 0.11.2. Other latest versions can also works.
 
 ## Detailed Description
 We provide three bash script files:
@@ -37,9 +38,9 @@ We provide three bash script files:
 | baseline.sh      | Use baseline model repair techniques to repair models   | 
 | repair.sh        | Use Hybrid Repair to repair models                      |
  
-To run these script files, you need to specify the DATA_ROOT variable in all sh files. (Notice: If your cifar10 dataset is stored in "./dataset/cifar10", then you only need to input "./dataset") 
+Our code uses the dataset from package ‘torchvision’ and supports automatically downloading. Dataset will be download to './dataset' automatically by default. If you already have the dataset, or you want to try on custom dataset, you can specify the DATA_ROOT variable in all sh files. (Notice: If your cifar10 dataset is stored in "./dataset/cifar10", then you only need to input "./dataset") 
 
-We provide three trained **MobileNet** models (e.g., the model under repair) on **cifar10** in 'check_point\cifar10\ckpt_bias', and a pretrained feature extraction model in 'check_point\cifar10\ckpt_pretrained_mocov3'. 
+We provide three trained **MobileNet** models (e.g., the model under repair) on **cifar10** in 'check_point\cifar10\ckpt_bias', and a pretrained feature extraction model in 'check_point\cifar10\ckpt_pretrained_mocov3'.
 
 ### Simple Example
 
