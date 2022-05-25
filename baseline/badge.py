@@ -9,7 +9,9 @@ import torch
 from torch._C import device
 import torch.nn as nn
 import torch.nn.functional as F
-
+"""
+This is an implementation of baseline method -- Badge
+"""
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def get_grad_embedding(model2test, test_set, n_classes=10, embDim = 1024):

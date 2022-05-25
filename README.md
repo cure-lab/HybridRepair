@@ -48,7 +48,7 @@ To check the general functionality, you can run the following command:
 ```
 sh baseline.sh
 ```
-It will run baseline method 'MCP' for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 min. The expected output is "T2 Acc before/after repair: 80.38/80.8". You can expect minor rounding errors due to the difference in hardware. 
+It will run baseline method 'MCP' for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 min on 2 TITAN NVIDIA XP GPU. The expected output is "T2 Acc before/after repair: 80.38/80.8". You can expect minor rounding errors due to the difference in hardware. 
 
 ### To validate the paper’s claims and results: 
 
@@ -56,20 +56,21 @@ It will run baseline method 'MCP' for MobileNet on cifar10 (budget=1%, Model A).
 ```
 sh repair.sh
 ```
-- It will run HybridRepair for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 hour. The expected output is "T2 Acc before/after repair: 80.38/83.8".
+- It will run HybridRepair for MobileNet on cifar10 (budget=1%, Model A). This commend takes roughly 1 hour on 2 TITAN NVIDIA XP GPU. The expected output is "T2 Acc before/after repair: 80.38/83.8".
 - For other dataset and model, please change the variables 'DATASET' and 'MODEL' correspondingly. 
 
 **Run a baseline method(MCP) on cifar10 dataset and MobileNet**
 ```
 sh baseline.sh
 ```
-- For other baseline methods, please change the variable 'SOLUTION' correspondingly, i.e, 'gini' 'mcp' 'coreset' 'badge' 'SSLConsistency' 'SSLConsistency-Imp' 'SSLRandom'. 
-- For other dataset and model, please change the variables 'DATASET' and 'MODEL' correspondingly. 
+- For other baseline methods used in the paper, please change the variable 'SOLUTION' correspondingly, i.e, 'gini' 'mcp' 'coreset' 'badge' 'SSLConsistency' 'SSLConsistency-Imp' 'SSLRandom'. 
+- For other dataset and model used in the paper, please change the variables 'DATASET' and 'MODEL' correspondingly, i.e, 'cifar10' 'svhn' 'gtsrb' and 'MobileNet' 'resnet18' 'ShuffleNetG2'. 
 
-**Before validation on other dataset and model**, please run the following command to generate models under repair first. The variables 'DATASET' and 'MODEL' in train.sh should be changed correspondingly. 
+**Before validation on other dataset and model used in the paper**, please run the following command to generate models under repair first. The variables 'DATASET' and 'MODEL' in train.sh should be changed correspondingly, i.e, 'cifar10' 'svhn' 'gtsrb' and 'MobileNet' 'resnet18' 'ShuffleNetG2'. 
 ```
 sh train.sh
 ```
+**Extend to other dataset and model**
 
 ## Contact
 If there are any questions, feel free to send a message to yuli@cse.cuhk.edu.hk or mxchen21@cse.cuhk.edu.hk
