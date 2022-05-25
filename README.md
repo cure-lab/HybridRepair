@@ -74,7 +74,7 @@ sh train.sh
 ### Extend HybridRepair to other dataset and model
 For new dataset:
 1. Train models with the train_classifier.py. In this file, you will modify the "num of classes", "weight per class", and "load dataset" part accordingly.
-1. After prepare the model, we add the details about the new dataset in selection.py, including transformation, normalization values, number of classes, and how to break the whole dataset into different subsets.
+1. After prepare the model, you can add the details about the new dataset in selection.py, including transformation, normalization values, number of classes, and how to break the whole dataset into different subsets.
     - mix_test_set: We combine train set and test set of the original division to a large dataset
     - T2_set: The new test set. After retraining, we evalute the retrained model on this set.
     - raw_test_set: The unlabeled dataset. Selection methods selects data points for labeling from this set.
