@@ -416,7 +416,7 @@ def main():
     mix_test_set: We combine train set and test set of the original division to a large dataset
     T2_set: The new test set. After retraining, we evalute the retrained model on this set.
     raw_test_set: The unlabeled dataset. Selection methods selects data points for labeling from this set.
-    selected_set: The set of data selected by selection methods
+    selected_set: The set of data selected by selection methods from raw_test_set.
     model2test_trainset: The set of initial trained data. Model will be retrained on model2test_trainset and selected_set.
     """
     train_idx = np.array(train_idx)
